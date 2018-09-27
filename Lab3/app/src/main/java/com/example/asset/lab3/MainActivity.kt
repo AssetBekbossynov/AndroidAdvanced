@@ -21,20 +21,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tabLayout.getTabAt(0)!!.text = "RECENT NEWS"
+        tabLayout.getTabAt(1)!!.text = "CATEGORY"
+
         linearLayoutManager = LinearLayoutManager(this)
 
         adapterViewPager = PagerAdapter(supportFragmentManager)
 
-        if (tabLayout.selectedTabPosition == 1){
-            fragment = NewsFragment()
-        }else if (tabLayout.selectedTabPosition == 2){
-            fragment = CategoryFragment()
-        }
+        vPager.adapter = adapterViewPager
+        tabLayout.setupWithViewPager(vPager)
 
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        vPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                tabLayout.getTabAt(position)!!.select()
+            }
+        })
 
 //        rv.layoutManager = linearLayoutManager
 //        if (savedInstanceState != null){

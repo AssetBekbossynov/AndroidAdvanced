@@ -29,7 +29,8 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:src="@drawable/search"
+                android:src="@drawable/default_image"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +65,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/newsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -83,7 +84,7 @@
                     android:layout_marginTop="8dp"
                     android:src="@drawable/date"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
                 <TextView
                     android:id="@+id/date"
@@ -93,7 +94,7 @@
                     android:layout_marginTop="8dp"
                     android:text="2018-21-05"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
                 <TextView
                     android:id="@+id/content"
