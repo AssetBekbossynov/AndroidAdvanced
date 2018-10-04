@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         newsDao = (applicationContext as MyApp).database.newsDao()
 
-        loadData()
-
-        rv.adapter = NewsAdapter(newsList, this)
         rv.layoutManager = LinearLayoutManager(this)
+        rv.adapter = NewsAdapter(newsList, this)
+
+        loadData()
 
         fab.setOnClickListener {
             val intent = Intent(this, AddNewsActivity::class.java)
