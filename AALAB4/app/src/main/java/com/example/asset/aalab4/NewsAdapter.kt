@@ -20,6 +20,7 @@ class NewsAdapter(private val list: ArrayList<News>, private val context: Contex
     }
 
     override fun getItemCount(): Int {
+        Log.d("MY_TAG", "getItemCount")
         return list.size
     }
 

@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class ListAdapter(private val actor: ArrayList<Actor>, private val context: Context) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(private val actor: ArrayList<Actor>, private val context: Context) :
+        RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("TAG", "onCreateViewHolder " + actor.size)
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_list, parent, false)

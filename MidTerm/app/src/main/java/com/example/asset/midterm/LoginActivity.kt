@@ -19,13 +19,17 @@ class LoginActivity : AppCompatActivity() {
 
         login.setOnClickListener {
             Thread(Runnable {
-                val user = userDao.getUsersByName(email.editText!!.text.toString())
-                if (password.editText!!.text.equals(user.password)){
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("user_id", user.id)
-                    startActivity(intent)
+                val user = userDao.getUsersByName(email.editText!!.text.toString(), password.editText!!.text.toString())
+
+                Log.d("KTP", "user " + user)
+                if (user != null){
+                    runOnUiThread {
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("user_id", user.id)
+                        startActivity(intent)
+                    }
                 }else{
-                    val user = User(userDao.getCount() + 1, email.editText!!.text.toString(), password.editText!!.toString())
+                    val user = User(userDao.getCount() + 1, email.editText!!.text.toString(), password.editText!!.text.toString())
                     userDao.insertUser(user)
                     runOnUiThread {
                         Toast.makeText(this, "User created username ${email.editText!!.text} password ${password.editText!!.text}", Toast.LENGTH_LONG).show()

@@ -13,8 +13,8 @@ interface UserDao {
     @Query("SELECT * FROM user")
     fun getUsers(): List<User>
 
-    @Query("SELECT * FROM user WHERE name = :name")
-    fun getUsersByName(name: String): User
+    @Query("SELECT * FROM user WHERE name = :name and password =:pass")
+    fun getUsersByName(name: String, pass: String): User
 
     @Query("SELECT COUNT(id) FROM user")
     fun getCount(): Long

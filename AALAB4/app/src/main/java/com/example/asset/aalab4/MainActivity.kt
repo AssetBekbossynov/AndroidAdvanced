@@ -1,3 +1,4 @@
+
 package com.example.asset.aalab4
 
 import android.app.Activity
@@ -19,16 +20,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var newsDao: NewsDao
 
+    lateinit var adapter: NewsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         newsDao = (applicationContext as MyApp).database.newsDao()
 
-        rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = NewsAdapter(newsList, this)
+        adapter = NewsAdapter(newsList, this)
 
         loadData()
+
+        rv.layoutManager = LinearLayoutManager(this)
+        rv.adapter = adapter
+
 
         fab.setOnClickListener {
             val intent = Intent(this, AddNewsActivity::class.java)
@@ -45,10 +51,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadData(){
         Thread(Runnable {
-            newsList = newsDao.getNews() as ArrayList<News>
+            newsList.clear()
+            newsList.addAll(newsDao.getNews() as ArrayList<News>)
             runOnUiThread {
                 Log.d("MY_TAG", "news mian " + newsList)
-                rv.adapter.notifyDataSetChanged()
+                adapter.notifyDataSetChanged()
             }
         }).start()
     }

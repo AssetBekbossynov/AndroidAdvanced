@@ -1,6 +1,8 @@
 package com.example.asset.midterm
 
 import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
@@ -28,18 +30,17 @@ class TodosFragment: Fragment(), Communicator {
         val view = inflater.inflate(R.layout.todo_fragment, container, false)
         rv = view.findViewById(R.id.rv)
 
-        (context as MainActivity).communicator = this
-
-        todoDao = (context as MyApp).database.todoDao()
+//        (activity as MainActivity).communicator = this
 
         return view
     }
 
-    override fun getUser(userId: Long) {
-        Thread(Runnable {
-            list = todoDao.getTodosByStatusAndUser(userId, "todo") as ArrayList<Todo>
-            rv!!.adapter = TodoAdapter(list, context!!)
-        }).start()
+    override fun getUser(userId: Long, context: Context) {
+//        todoDao = (activity as MyApp).database.todoDao()
+//        Thread(Runnable {
+//            list = todoDao.getTodosByStatusAndUser(userId, "todo") as ArrayList<Todo>
+//            rv!!.adapter = TodoAdapter(list, context!!)
+//        }).start()
     }
 
 }

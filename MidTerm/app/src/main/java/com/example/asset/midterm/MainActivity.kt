@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         linearLayoutManager = LinearLayoutManager(this)
 
-        communicator.getUser(intent.getLongExtra("user_id", -1))
+//        communicator.getUser(intent.getLongExtra("user_id", -1), applicationContext)
 
         vPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
